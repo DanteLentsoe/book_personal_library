@@ -3,7 +3,7 @@
 const express     = require('express');
 const bodyParser  = require('body-parser');
 const cors        = require('cors');
-require('dotenv').config();
+const helmet      = require('helmet');
 
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
@@ -17,11 +17,20 @@ app.use(cors({origin: '*'})); //USED FOR FCC TESTING PURPOSES ONLY!
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(helmet.noCache());
+app.use(helmet.hidePoweredBy({setTo: 'PHP 4.2.0'}))
 
 //Index page (static HTML)
 app.route('/')
   .get(function (req, res) {
     res.sendFile(process.cwd() + '/views/index.html');
+  });
+
+
+//About page (static HTML)
+app.route('/about')
+  .get(function (req, res) {
+    res.sendFile(process.cwd() + '/views/about.html');
   });
 
 //For FCC testing purposes
@@ -46,7 +55,7 @@ app.listen(process.env.PORT || 3000, function () {
       try {
         runner.run();
       } catch(e) {
-        let error = e;
+        var error = e;
           console.log('Tests are not valid:');
           console.log(error);
       }
