@@ -1,70 +1,162 @@
 <html>
-<head>
-  <title>Personal Library</title>
-  <link rel="icon" type="image/png" href="https://cdn.freecodecamp.org/universal/favicons/favicon-16x16.png" />
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/public/style.css">
-  <style>
-    code {
-      background-color: whitesmoke;
-    }
-  </style>
-</head>
-<body>
-<header>
-  <h1>Personal Library</h1>
-</header>
-<br>
-<div id ='sampleposting'>
-  <h2 style="text-align: left">Test API responses</h2>
-  <form action="/api/books" method="post" class="border">
-    <h4>Test post to /api/books</h4>
-    <label for="title" >Book Title</label>
-    <input type="text" id="title" name="title" value=""><br>
-    <input type="submit" value="Submit">
-  </form>
-  <form action="" method="post" id="commentTest" class="border">
-    <h4>Test post to /api/books/{bookid}</h4>
-    <label for="idinputtest">BookId to comment on</label>
-    <input type="text" name="id" value="" id="idinputtest"><br>
-    <label for="comment">Comment</label>
-    <input type="text" id="comment" name="comment" value=""><br>
-    <input type="submit" value="Submit">
-  </form>
+  <head>
+    <title>Personal Book Library | Home </title>
+    <meta name="description" content="A cool thing made with HyperDev" />
+    <link
+      id="favicon"
+      rel="icon"
+      href="https://hyperdev.com/favicon-app.ico"
+      type="image/x-icon"
+    />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:300" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Sans"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/public/style.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </head>
+  <body>
+    
+    <header>
+      
+<div class="topnav" id="myTopnav">
+  <a href="/" class="active">Home</a>
+  <a href="#contact">Contact</a>
+  <a href="/about">About</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>
-<hr style='margin: 50px'>
-<div id='sampleui'>
-  <h2 style="text-align: left">Sample Front-End</h2>
-  <form id="newBookForm" class="border">
-    <label for="bookTitleToAdd">New Book Title</label>
-    <input type="text" id="bookTitleToAdd" name="title" placeholder="Moby Dick" style="width: 295px">
-    <button type="submit" value="Submit" id="newBook">Submit New Book!</button>
-  </form>
-  <div id='display'></div>
-  <div id='bookDetail' class='border'>
-    <p id='detailTitle'>Select a book to see it's details and comments</p>
-    <ol id='detailComments'></ol>
-  </div>
-  <button id='deleteAllBooks'>Delete all books...</button>
-</div>
-<hr style='margin: 50px'>
+    </header>
+    
+    <!-- first home page -->
+ <div id="hero-header">
+    <div id="hero-content">
+      <h1 id="hero-title"> Personal Library </h1>
 
-<script src="https://code.jquery.com/jquery-2.2.1.min.js"
-        integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
-        crossorigin="anonymous"></script>
-<script src="/public/client.js"></script>
-<script>
-  /*
-  *  For #sampleposting to update form action url to test inputs book id
-  */
-  $(function() {
-    $('#commentTest').submit(function(){
-      let  id = $('#idinputtest').val();
-      $(this).attr('action', "/api/books/" + id);
-    });
-  });
+      <p id="hero-text"> A Collection of Books Read By Dante Lentsoe </p>
+
+      <a href="#book-comments"><button id="hero-button"> Next Section </button></a>
+    </div>
+  </div> 
+    <hr style="margin: 50px" />
+    <div class= "container">
+    <div id="sampleposting">
+      
+      <!-- Form one -->
+      <h2 style="text-align: left">Test API responses:</h2>
+      <div class="form-container">
+      <form action="/api/books" method="post" class="border">
+        <h4>Test post to /api/books</h4>
+        Book Title:<br />
+        <input type="text" name="title" value="" /><br />
+        <input class="submit" type="submit" value="Submit" />
+      </form>
+      <form action="" method="post" id="commentTest" class="border">
+        <h4>Test post to /api/books/{bookid}</h4>
+        BookId to comment on:<br />
+        <input type="text" name="id" value="" id="idinputtest" /><br />
+        Comment:<br />
+        <input type="text" name="comment" value="" /><br />
+        <input class="submit" type="submit" value="Submit" />
+      </form>
+      </div>
+    </div>
+    </div>
+    
+    <!-- Form 2 -->
+    <hr style="margin: 50px" />
+    
+    <div class= "container">
+                   
+                   
+    <div id="sampleui">
+      <h2>Front-End Entry Post:</h2>
+      <div class="form-container">
+      <form id="newBookForm" class="border">
+        <input
+          type="text"
+          id="bookTitleToAdd"
+          name="title"
+          placeholder="New Book Title"
+          style="width: 295px"
+        />
+        <button type="submit" value="Submit" id="newBook">
+          Submit New Book!
+        </button>
+      </form>
+      </div>
+      </div>
+    </div>
+      
+      
+      <!-- Display JSON Render -->
+   <div class= "container" id="book-comments">
+     <h2 class="render-heading">Book Posted Comments</h2>
+    <div class="comment-render">
+      <div id="display"></div>
+      <div id="bookDetail" class="border">
+        <p id="detailTitle">Select a book to see it's details and comments</p>
+        <ol id="detailComments"></ol>
+      </div>
+      <button id="deleteAllBooks">Delete all books...</button>
+    </div>
+    </div>
+    
+    
+    <hr style="margin: 50px" />
+
+    <script
+      src="https://code.jquery.com/jquery-2.2.1.min.js"
+      integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+      crossorigin="anonymous"
+    ></script>
+    <script src="/public/client.js"></script>
+    <script>
+      /*
+       *  For #sampleposting to update form action url to test inputs book id
+       */
+      $(function() {
+        $("#commentTest").submit(function() {
+          var id = $("#idinputtest").val();
+          $(this).attr("action", "/api/books/" + id);
+        });
+      });
+    </script>
+    <script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
 </script>
-</body>
+     <footer>
+      <div class="footer">
+        <div class="footer container">
+      <h2 class="footer-h1">Personal Library</h2>
+      <div class="social-media">
+        <div class="social-media-item">
+          <a href="https://github.com/DanteLentsoe" target="blank_" class="icon-link"><i class="fab fa-github"></i></a>
+        </div>
+        <div class="social-media-item">
+          <a href="https://www.linkedin.com/in/dante-lentsoe-2b6566148/" target="blank_" class="icon-link"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <div class="social-media-item">
+          <a href="https://dantelentsoe.netlify.app/" target="blank_" class="icon-link"><i class="fab fa-dev"></i></a>
+        </div>
+      </div>
+      <p>Copyright © 2020 Developed by <a href="https://dantelentsoe.netlify.app/" class="name-link" style="text-decoration:none; color:pink;"> Dante Lentsoe. </a> All rights reserved</p>
+    </div>
+      </div>
+    </footer>
+    <div id="contact"></div>
+  </body>
 </html>
